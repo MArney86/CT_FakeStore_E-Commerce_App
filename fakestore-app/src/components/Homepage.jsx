@@ -7,9 +7,9 @@ export default function Homepage() {
   return (
     <div>
     <Container fluid className='align-items-center'>
-        <div className='text-center'>
-            <h3>Hi, welcome to the FakeStore App 🏠 page!</h3>
-            <p>This app will let you view/edit/add/delete products using the FakeStoreAPI.</p>
+        <div className='homepage-hero text-center'>
+            <h3>🎉 Shop Like a Billionaire! 🎉</h3>
+            <p>Unbeatable deals, amazing products, incredible prices - Your shopping paradise awaits!</p>
         </div>
     </Container>
     </div>

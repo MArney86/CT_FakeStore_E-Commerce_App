@@ -39,9 +39,9 @@ export default function ProductDetails ({loading, setLoading, error, setError}) 
 
     return(
         <div className="container d-flex flex-column justify-content-center align-items-center min-vh-100">
-            <div className="text-center w-75">
+            <div className="product-details-container text-center">
                 <h1 className="mb-4">{product.title}</h1>
-                <img  className="border border-3 rounded-3 border-secondary-subtle m-3 p-2" src={product.image} />
+                <img className="product-details-image m-3 p-2" src={product.image} alt={product.title} />
                 <h4>{product.description}</h4>
                 <div className="d-flex justify-content-center">
                     <Table striped hover className="w-25 fw-bold">

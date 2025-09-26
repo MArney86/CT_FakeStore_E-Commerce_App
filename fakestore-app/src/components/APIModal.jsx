@@ -15,10 +15,10 @@ export default function APIModal({ product, submitted, showModal, handleCloseMod
                             <p>Nice job! Here is the information returned from the API:</p>
                             <p><b>id: </b>{product.id}</p>
                             <p><b>title: </b>{product.title}</p>
-                            <p><b>price: </b>{product.price}</p>
+                            <p><b>price: </b>${product.price.toFixed(2)}</p>
                             <p><b>description: </b>{product.description}</p>
                             <p><b>category: </b>{product.category}</p>
-                            <p><b>image: </b><img src={product.image} alt={product.title || 'Product'} /></p>
+                            <p><b>image: </b><img src={product.image} alt={product.title || 'Product'} style={{maxWidth: '200px'}} /></p>
                         </>
                     )}
                 </Modal.Body>

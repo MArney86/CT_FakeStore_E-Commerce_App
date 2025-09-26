@@ -5,8 +5,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 
 export default function NavBar() {
     return (
-        <Navbar bg="info" variant="dark" expand="lg" className="p2 mb-2">
-            <Navbar.Brand>FakeStore Application</Navbar.Brand>
+        <Navbar expand="lg" className="navbar">
+            <Navbar.Brand>🛒 FakeStore</Navbar.Brand>
             <Navbar.Toggle aria-controls="Fs-navbar-nav" />
             <Navbar.Collapse id="Fs-navbar-nav">
                 <Nav>
