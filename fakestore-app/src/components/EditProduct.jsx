@@ -80,10 +80,10 @@ export default function EditProduct() {
     return (
         <>
             <Container className="mt-5">
-                <h2>Edit Exisitin Product</h2>
+                <h2>Edit Existing Product</h2>
                 <APIModal product={product} submitted={submitted} showModal={showModal} handleCloseModal={handleCloseModal} request={'put'} />
 
-                {submitted && <Alert variant="success" dismissible>{product.title} created successfully!</Alert>}
+                {submitted && <Alert variant="success" dismissible>{product.title} updated successfully!</Alert>}
                 {error && <Alert variant="danger" dismissible>{error}</Alert>}
 
                 <Form onSubmit={handleSubmit} noValidate validated={validated}>
@@ -111,7 +111,7 @@ export default function EditProduct() {
                                     type="Text"
                                     placeholder="Please enter your product's title"
                                     name="title"
-                                    value={formData.email}
+                                    value={formData.title}
                                     onChange={handleChange}
                                     required
                                 />

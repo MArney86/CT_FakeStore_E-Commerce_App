@@ -104,7 +104,7 @@ export default function AddProduct() {
                                     type="Text"
                                     placeholder="Please enter your product's title"
                                     name="title"
-                                    value={formData.email}
+                                    value={formData.title}
                                     onChange={handleChange}
                                     required
                                 />
@@ -128,7 +128,7 @@ export default function AddProduct() {
                                     required
                                 />
                                 <Form.Control.Feedback type="invalid">
-                                    Please provide a phone number.
+                                    Please provide a valid price.
                                 </Form.Control.Feedback>
                             </FloatingLabel>
                         </Col>

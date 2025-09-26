@@ -10,17 +10,17 @@ export default function APIModal({ product, submitted, showModal, handleCloseMod
                     <Modal.Title>Form Submitted!</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {submitted &&
+                    {submitted && product && (
                         <>
-                            <p>Nice job!  Here is the information returned from the API:</p>
+                            <p>Nice job! Here is the information returned from the API:</p>
                             <p><b>id: </b>{product.id}</p>
                             <p><b>title: </b>{product.title}</p>
                             <p><b>price: </b>{product.price}</p>
                             <p><b>description: </b>{product.description}</p>
                             <p><b>category: </b>{product.category}</p>
-                            <p><b>image: </b><img src={product.image}></img></p>
+                            <p><b>image: </b><img src={product.image} alt={product.title || 'Product'} /></p>
                         </>
-                    }
+                    )}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={handleCloseModal}>

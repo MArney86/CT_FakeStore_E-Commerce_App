@@ -45,7 +45,7 @@ export default function DeleteProduct() {
         <Container className="mt-5">
             <h2>Delete Product</h2>
             <APIModal product={response} submitted={submitted} showModal={showModal} handleCloseModal={handleCloseModal} request={'delete'} />
-            {submitted && <Alert variant="success" dismissible>{response.title} deleted successfully!</Alert>}
+            {submitted && <Alert variant="success" dismissible>Product {response.id} deleted successfully!</Alert>}
             {error && <Alert variant="danger" dismissible>{error}</Alert>}
             <Form onSubmit={handleSubmit}>
                 <FloatingLabel controlId="deleteProductId" label="Product ID" className="mb-3">
