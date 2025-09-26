@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
 
-const FormModal = ({ product, submitted, showModal, handleCloseModal, request }) => {
+export default function APIModal({ product, submitted, showModal, handleCloseModal, request }) {
     return (
         <>
             <Modal show={showModal} onHide={handleCloseModal}>
@@ -30,6 +30,4 @@ const FormModal = ({ product, submitted, showModal, handleCloseModal, request })
             </Modal>
         </>
     );
-};
-
-export default FormModal;
+}

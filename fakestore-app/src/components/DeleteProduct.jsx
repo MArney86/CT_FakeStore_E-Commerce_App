@@ -8,6 +8,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import APIModal from './ApiModal'
 
 export default function DeleteProduct() {
+    // State variables 
     const [productId, setProductId] = useState('');
     const [submitted, setSubmitted] = useState(false);
     const [showModal, setShowModal] = useState(false);

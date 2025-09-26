@@ -6,7 +6,6 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useEffect } from 'react';
-import ProductDetails from './ProductDetails';
 
 export default function ProductListings ({products, setProducts, loading, setLoading, error, setError}) {
     
