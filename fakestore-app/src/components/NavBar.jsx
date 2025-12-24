@@ -13,9 +13,9 @@ export default function NavBar() {
                     <Nav.Link as={NavLink} to="/" activeclassname="active">Home</Nav.Link>
                     <Nav.Link as={NavLink} to="/Products" activeclassname="active">Products</Nav.Link>
                     <NavDropdown title="Product Tools">
-                        <NavDropdown.Item href="/AddProduct">Add a Product</NavDropdown.Item>
-                        <NavDropdown.Item href="/EditProduct">Edit a Product</NavDropdown.Item>
-                        <NavDropdown.Item href="/DeleteProduct">Delete a Product</NavDropdown.Item>
+                        <NavDropdown.Item as={NavLink} to="/AddProduct">Add a Product</NavDropdown.Item>
+                        <NavDropdown.Item as={NavLink} to="/EditProduct">Edit a Product</NavDropdown.Item>
+                        <NavDropdown.Item as={NavLink} to="/DeleteProduct">Delete a Product</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
             </Navbar.Collapse>

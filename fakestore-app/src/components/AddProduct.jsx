@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import APIModal from './ApiModal';
+import APIModal from './APIModal';
 import axios from 'axios';
 
 export default function AddProduct() {

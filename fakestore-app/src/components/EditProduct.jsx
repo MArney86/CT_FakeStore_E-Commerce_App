@@ -6,11 +6,12 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import APIModal from './ApiModal';
+import APIModal from './APIModal';
 import axios from 'axios';
 
 export default function EditProduct() {
 
+    const [productId, setProductId] = useState('');
     const [formData, setFormData] = useState({
         id: 0,
         title: "",
@@ -26,34 +27,45 @@ export default function EditProduct() {
     const [showModal, setShowModal] = useState(false);
     const handleCloseModal = () => setShowModal(false);
     const [validated, setValidated] = useState(false);
+    const [productFetched, setProductFetched] = useState(false);
 
-    useEffect(() => {
-        if (formData.id && formData.id > 0) {
-            axios.get(`https://fakestoreapi.com/products/${formData.id}`)
-            .then(response => {
-                setFormData({
-                    id: response.data.id,
-                    title: response.data.title,
-                    price: response.data.price,
-                    description: response.data.description,
-                    category: response.data.category,
-                    image: response.data.image,
-                });
-                setError(null);
-            }) .catch (err => {
-                setError(`Could not fetch product: ${err.message}`);
-            });
+    const handleFetchProduct = async () => {
+        if (!productId || productId < 1) {
+            setError('Please enter a valid product ID.');
+            return;
         }
-    }, [formData.id]);
+
+        try {
+            const response = await axios.get(`https://fakestoreapi.com/products/${productId}`);
+            setFormData({
+                id: response.data.id,
+                title: response.data.title,
+                price: response.data.price,
+                description: response.data.description,
+                category: response.data.category,
+                image: response.data.image,
+            });
+            setError(null);
+            setProductFetched(true);
+        } catch (err) {
+            setError(`Could not fetch product: ${err.message}`);
+            setProductFetched(false);
+        }
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
 
         setFormData({
             ...formData,
-            [name]: name === 'id' ? parseInt(value) || 0 : name === 'price' ? parseFloat(value) || 0 : value
+            [name]: name === 'price' ? parseFloat(value) || 0 : value
         });
-    }
+    };
+
+    const handleIdChange = (e) => {
+        setProductId(e.target.value);
+        setProductFetched(false);
+    };
     
 
     const handleSubmit = async (e) => {
@@ -92,17 +104,45 @@ export default function EditProduct() {
                             <FloatingLabel controlId="formId" label="Product ID" className="mb-3 mt-2">
                                 <Form.Control
                                     type="number"
-                                    placeholder="Enter an ID (integer > 20) for your product"
+                                    placeholder="Enter a product ID"
                                     name="id"
-                                    value={formData.id}
-                                    onChange={handleChange}
+                                    value={productId}
+                                    onChange={handleIdChange}
                                     min="1"
                                     required
+                                    disabled={productFetched}
                                 />
                                 <Form.Control.Feedback type="invalid">
                                     Please provide a valid product ID.
                                 </Form.Control.Feedback>
                             </FloatingLabel>
+                            {!productFetched && (
+                                <Button 
+                                    variant="info" 
+                                    onClick={handleFetchProduct}
+                                    className="mb-3">
+                                    Load Product
+                                </Button>
+                            )}
+                            {productFetched && (
+                                <Button 
+                                    variant="secondary" 
+                                    onClick={() => {
+                                        setProductFetched(false);
+                                        setProductId('');
+                                        setFormData({
+                                            id: 0,
+                                            title: "",
+                                            price: 0,
+                                            description: "",
+                                            category: "",
+                                            image: "",
+                                        });
+                                    }}
+                                    className="mb-3">
+                                    Change Product
+                                </Button>
+                            )}
                         </Col>
 
                         <Col md="7">
@@ -114,6 +154,7 @@ export default function EditProduct() {
                                     value={formData.title}
                                     onChange={handleChange}
                                     required
+                                    disabled={!productFetched}
                                 />
                                 <Form.Control.Feedback type="invalid">
                                     Please provide a title for the product.
@@ -133,6 +174,7 @@ export default function EditProduct() {
                                     onChange={handleChange}
                                     step={0.01}
                                     required
+                                    disabled={!productFetched}
                                 />
                                 <Form.Control.Feedback type="invalid">
                                     Please provide a valid price.
@@ -150,6 +192,7 @@ export default function EditProduct() {
                                     onChange={handleChange}
                                     style={{height:'6.25rem'}}
                                     required
+                                    disabled={!productFetched}
                                 />
                                 <Form.Control.Feedback type="invalid">
                                     Please enter a description for your product.
@@ -168,6 +211,7 @@ export default function EditProduct() {
                                     value={formData.category}
                                     onChange={handleChange}
                                     required
+                                    disabled={!productFetched}
                                 />
                                 <Form.Control.Feedback type='invalid'>
                                     Please enter a category for your product.
@@ -184,6 +228,7 @@ export default function EditProduct() {
                                     value={formData.image}
                                     onChange={handleChange}
                                     required
+                                    disabled={!productFetched}
                                 />
                                 <Form.Control.Feedback type='invalid'>
                                     Please enter a valid URL to the product image.
@@ -192,7 +237,7 @@ export default function EditProduct() {
                         </Col>
                     </Row>
 
-                    <Button variant="primary" type="submit" className="mt-3">
+                    <Button variant="primary" type="submit" className="mt-3" disabled={!productFetched}>
                         Update Product
                     </Button>
                 </Form>
